@@ -2,13 +2,15 @@
     <div class="container">
         <a class="navbar-brand">Blogs</a>
         <form class="form-inline">
-            <div class="dropdown">
+            <div class="dropdown mx-3">
             <span (click)="myFunction()" class="dropbtn"id="nameofuser"  style="cursor: pointer;">
                 <img src="https://img.icons8.com/ios-glyphs/30/000000/appointment-reminders--v2.png"/>
                 <span style="color:red">{{commentList.length}}</span>
             </span>
             
           </div>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" routerLink="">log Out</button>
+
         </form>
     </div>
 </nav>
