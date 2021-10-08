@@ -1,3 +1,4 @@
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,6 +11,10 @@ import { RegisterComponent } from './Components/register/register.component';
 import { AdminComponent } from './Components/admin/admin.component';
 import { VistorComponent } from './Components/vistor/vistor.component';
 import { ModeratorComponent } from './Components/moderator/moderator.component';
+import { HomeComponent } from './Components/home/home.component';
+import { BlogService } from './services/blog.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,12 +26,17 @@ import { ModeratorComponent } from './Components/moderator/moderator.component';
     AdminComponent,
     VistorComponent,
     ModeratorComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    NgbModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [HttpClient, BlogService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

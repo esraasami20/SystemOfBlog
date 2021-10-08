@@ -1,1 +1,113 @@
-<p>moderator works!</p>
+<nav class="navbar navbar-light bg-light justify-content-between mb-3">
+    <div class="container">
+        <a class="navbar-brand">Blogs</a>
+        <form class="form-inline">
+            <div class="dropdown">
+            <span (click)="myFunction()" class="dropbtn"id="nameofuser"  style="cursor: pointer;">
+                <img src="https://img.icons8.com/ios-glyphs/30/000000/appointment-reminders--v2.png"/>
+                <span style="color:red">{{commentList.length}}</span>
+            </span>
+            
+          </div>
+        </form>
+    </div>
+</nav>
+
+<div id="myDropdown" class="container text-center" *ngIf="!show">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Blog Title</th>
+                    <th>Commnet Body</th>
+                    <th> ... </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of commentList">
+                    <td>{{item.blog.blogName}}</td>
+                    <td>{{item.commentBody}}</td>
+                    <td><h3 class="btn btn-default" style="color: green;" (click)="approveComment(item)">+</h3></td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+<div class="container text-center" style="margin: auto;">
+    <div class="container  align-self-center">
+    <div *ngFor="let item of blogs" class=" align-self-center mb-3">
+        <div class="card" style="width: 50%; margin: auto;">
+            <div class="card-header">
+                <div class="row d-flex">
+                    <div class="col-6 float-left">
+                        <h3 class="card-title">{{item.blogName}}</h3>
+                    </div>
+                    <div class="col-4">
+                        <h6  style="margin-left: 25%;" class="card-title">{{item.createdAt | date:'MMMM dd yyyy'}}</h6>
+                    </div>
+                    <div class="col-2">
+                        <h6 class="card-title" style="cursor: pointer;" (click)="OpenModalEdit(item)"> <img src="https://img.icons8.com/clouds/100/000000/edit.png" style="width: 50px;height: 50px;"/> </h6>
+                    </div>
+                </div>
+            </div>
+            <img class="card-img-top" src="{{item.image}}" style="height: 400px;" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text">{{item.blogBody}}</p>
+            </div>
+            <hr/>
+        </div>
+    </div>
+    </div>
+
+
+    <div id="editBlog" *ngIf="!openModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Blog</h5>
+        <button type="button" class="close" (click)="closeModal">
+          <span aria-hidden="true"  (click)="closeModal()">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"  style="overflow-y: scroll;">
+
+        <form #editBlog class="mt-3" [formGroup]="Editform" (ngSubmit)="OnSubmitEdit()">
+        <div class="d-block">
+            <div class="row d-block d-md-flex my-4">
+                <div class="col-6">
+                    <select class="form-control dropdwon"(change)="selectCategoryOnEdit($event)">
+                        <option>Select Category</option>
+                        <option *ngFor="let item of category" value="{{item.categoryId}}">{{item.categoryName}}</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <input class="form-control" type="text" value="{{title}}" placeholder="Blog Title" #blogNameOnEdit/>
+                </div>
+            </div>
+            <div class="row d-block d-md-flex">
+                <div>
+                    <textarea class="form-control" placeholder="Blog Body" value="{{body}}" #blogBodyOnEdit></textarea>
+                </div>
+            </div>
+            <div class="row d-block d-md-flex my-2">
+                <div class="col-6">
+                    
+                    <input type="file" class="custom-file-input form-control" id="img"
+                                    aria-describedby="inputGroupFileAddon02" (change)="onselectEdit($event)">
+                                    <label>{{image2}}</label>
+                    <img class="rounded-circle col-3" [src]="imageUrl2" />
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-success" >Edit Blog</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+    </div>
+</div>

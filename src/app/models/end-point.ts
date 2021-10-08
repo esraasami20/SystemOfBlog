@@ -15,7 +15,7 @@ export const ApiEnspoints = {
     getApprovedComment: `${prefixRoute}/Comment/approved-comment`,
     getNotApprovedComment: `${prefixRoute}/Comment/notApp-comment`,
     getVistorNotAppComment: `${prefixRoute}/Comment/vistorNotApp-comment`,
-    getVistorApprovedComment: `${prefixRoute}Comment/vistorApp-comment`,
-    addNewComment: `${prefixRoute}Comment`,
+    getVistorApprovedComment: `${prefixRoute}/Comment/vistorApp-comment`,
+    addNewComment: `${prefixRoute}/Comment`,
   },
 };
