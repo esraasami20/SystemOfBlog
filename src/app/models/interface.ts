@@ -40,6 +40,10 @@ export interface Blog {
 }
 
 
+export interface State {
+  isApproved: boolean;
+}
+
 export interface Comment {
   commentId: number;
   commentBody: string;

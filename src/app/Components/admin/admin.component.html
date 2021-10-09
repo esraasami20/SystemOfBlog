@@ -28,7 +28,8 @@
                 <tr *ngFor="let item of commentList">
                     <td>{{item.blog.blogName}}</td>
                     <td>{{item.commentBody}}</td>
-                    <td><h3 class="btn btn-default" style="color: green;" (click)="approveComment(item)">+</h3></td>
+                    <!-- (click)="approveComment(item)" -->
+                    <td><h3 class="btn btn-default" style="color: green;" >+</h3></td>
                 </tr>
             </tbody>
         </table>

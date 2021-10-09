@@ -179,10 +179,13 @@ export class AdminComponent implements OnInit {
     this.show = !this.show;
   }
   commentId:any;
-  approveComment(item: any) {
-    this.commentId = item.commentId;
-    this.adminService.approveComment(this.commentId).subscribe(a=>{
-      console.log(a)
-    });
-  }
+  // approveComment(item: any) {
+  //   this.commentId = item.commentId;
+  //   let params={
+  //     isApproved:true
+  //   }
+  //   this.adminService.approveComment(this.commentId, params).subscribe(a=>{
+  //     console.log(a)
+  //   });
+  // }
 }

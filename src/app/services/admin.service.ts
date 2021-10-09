@@ -1,3 +1,4 @@
+import { State } from './../models/interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -17,7 +18,10 @@ export class AdminService {
   getUnApprovedComment(): Observable<any> {
     return this.http.get(`${ApiEnspoints.Endpoints.addNewComment}`);
   }
-  approveComment(id:any): Observable<any> {
-    return this.http.put(`${ApiEnspoints.Endpoints.addNewComment}`,id);
-  }
+  // approveComment(id: number, params:any) {
+  //   return this.http.put<State>(
+  //     `${ApiEnspoints.Endpoints.addNewComment}/${id}`,
+  //     params
+  //   );
+  // }
 }

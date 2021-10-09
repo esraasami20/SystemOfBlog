@@ -16,10 +16,11 @@ export class BlogService {
   addComment(id: number, params: any): Observable<any> {
     return this.http.post(`${ApiEnspoints.Endpoints.blogsData}/${id}`, params);
   }
+
   addBlog(params: any): Observable<any> {
     return this.http.post(`${ApiEnspoints.Endpoints.blogsData}`, params);
   }
-  editBlog(id:any,params: any): Observable<any> {
+  editBlog(id: any, params: any): Observable<any> {
     return this.http.put(`${ApiEnspoints.Endpoints.blogsData}/${id}`, params);
   }
 }
