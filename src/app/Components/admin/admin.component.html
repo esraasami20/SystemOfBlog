@@ -1,6 +1,7 @@
 <nav class="navbar navbar-light bg-light justify-content-between mb-3">
     <div class="container">
         <a class="navbar-brand">Blogs</a>
+         <span>Welcome <span style="color: blue;font-size: large;"> {{Name}} </span></span>
         <form class="form-inline">
             <div class="dropdown mx-3">
             <span (click)="myFunction()" class="dropbtn"id="nameofuser"  style="cursor: pointer;">
@@ -9,7 +10,7 @@
             </span>
             
           </div>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="button" routerLink="">log Out</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" routerLink="" (click)="logOut()">log Out</button>
 
         </form>
     </div>
@@ -21,15 +22,28 @@
                 <tr>
                     <th>Blog Title</th>
                     <th>Commnet Body</th>
+                    <th>Reason</th>
                     <th> ... </th>
+                    <!-- <th> Reject </th> -->
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of commentList">
                     <td>{{item.blog.blogName}}</td>
                     <td>{{item.commentBody}}</td>
-                    <!-- (click)="approveComment(item)" -->
-                    <td><h3 class="btn btn-default" style="color: green;" >+</h3></td>
+                    <td>
+                        <input type="text" class="form-control" #reason/>
+                    </td>
+                    <td>
+                        <h3 class="btn btn-default" style="color: green;" (click)="approveComment(item,reason.value)">
+                            +
+                        </h3>
+                    </td>
+                    <!-- <td>
+                        <h3 class="btn btn-default" style="color: red;" (click)="rijComment(item,reason.value)">
+                            -
+                        </h3>
+                    </td> -->
                 </tr>
             </tbody>
         </table>

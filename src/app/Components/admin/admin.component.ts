@@ -18,6 +18,7 @@ export class AdminComponent implements OnInit {
     private blogService: BlogService
   ) {}
 
+  Name=localStorage.getItem('email')
   commentList: any[] = [];
   category: Category[] = [];
   blogs: Blog[] = [];
@@ -64,6 +65,7 @@ export class AdminComponent implements OnInit {
       alert('you add new category successfully ^_^');
       this.getAllCategory();
     });
+    this.showCategory = !this.showCategory;
   }
   selectCategory(event: any) {
     this.selected = event.target.value;
@@ -155,6 +157,7 @@ export class AdminComponent implements OnInit {
     this.blogService.addBlog(form).subscribe((a) => {
       this.getBlogs();
     });
+    this.showBlog = !this.showBlog;
   }
   OnSubmitEdit() {
     console.log(this.blogId);
@@ -169,6 +172,7 @@ export class AdminComponent implements OnInit {
   }
 
   getNotification() {
+    this.commentList=[];
     this.adminService.getUnApprovedComment().subscribe((a) => {
       this.commentList = a;
       console.log(a);
@@ -178,14 +182,34 @@ export class AdminComponent implements OnInit {
   myFunction() {
     this.show = !this.show;
   }
-  commentId:any;
-  // approveComment(item: any) {
-  //   this.commentId = item.commentId;
-  //   let params={
-  //     isApproved:true
-  //   }
-  //   this.adminService.approveComment(this.commentId, params).subscribe(a=>{
-  //     console.log(a)
-  //   });
-  // }
+  commentId: any;
+  approveComment(item: any,reason:string) {
+    console.log(reason)
+    this.commentId = item.commentId;
+    let params = {
+      IsAppeoved: true,
+      reason: reason,
+    };
+    this.adminService.approveComment(this.commentId, params).subscribe((a) => {
+      // console.log(a);
+      this.getNotification();
+      location.reload()
+    });
+  }
+  rijComment(item: any,reason:string){
+    console.log(reason);
+    this.commentId = item.commentId;
+    let params = {
+      IsAppeoved: false,
+      reason: reason,
+    };
+    this.adminService.approveComment(this.commentId, params).subscribe((a) => {
+      // console.log(a);
+      this.getNotification();
+      location.reload();
+    });
+  }
+  logOut(){
+    localStorage.clear();
+  };
 }

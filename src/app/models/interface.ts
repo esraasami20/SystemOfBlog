@@ -42,6 +42,7 @@ export interface Blog {
 
 export interface State {
   isApproved: boolean;
+  reason:string;
 }
 
 export interface Comment {

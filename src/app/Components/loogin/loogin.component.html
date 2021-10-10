@@ -35,24 +35,14 @@
             />
           </div>
           <div class="group d-flex">
-            <div class="col-4">
-              <input id="vistor" type="radio" class="check" />
-              <label for="vistor" style="color: white"
-                ><span class="icon"></span> Vistor
-              </label>
-            </div>
-            <div class="col-4">
-              <input id="admin" type="radio" class="check" />
-              <label for="admin" style="color: white"
-                ><span class="icon"></span> Admin
-              </label>
-            </div>
-            <div class="col-4">
-              <input id="moderator" type="radio" class="check" />
-              <label for="moderator" style="color: white"
-                ><span class="icon"></span> Moderator
-              </label>
-            </div>
+            <input id="mod" type="checkbox" class="check"  />
+            <label class="label btn btn-outline-primary mx-1" for="mod" style="color: white;">
+              <a href="/login-moderator" >Login as Moderator</a>
+            </label>
+            <label class="label btn btn-outline-primary mx-1" style="color: white;">
+              <input id="check" type="checkbox" class="check" />
+              <a href="/login-admin" >Login as Admin</a>
+            </label>
           </div>
           <div class="group">
             <input id="check" type="checkbox" class="check" checked />
@@ -70,29 +60,31 @@
         </form>
       </div>
       <div class="sign-up-htm">
-        <div class="group">
+        <form [formGroup]="RegisterformVistor" (ngSubmit)="OnSubmitVistor()">
+          <div class="group">
           <label for="fname" class="label">First Name</label>
-          <input id="fname" type="text" class="input" />
-        </div>
-        <div class="group">
+          <input id="fname" type="text" class="input" formControlName="Fname" />
+          </div>
+          <div class="group">
           <label for="lname" class="label">Last Name</label>
-          <input id="lname" type="text" class="input" />
-        </div>
-        <div class="group">
+          <input id="lname" type="text" class="input" formControlName="Lname"/>
+          </div>
+          <div class="group">
           <label for="add" class="label">Address</label>
-          <input id="add" type="text" class="input" />
-        </div>
-        <div class="group">
+          <input id="add" type="text" class="input" formControlName="Address"/>
+          </div>
+          <div class="group">
           <label for="user" class="label">Email</label>
-          <input id="user" type="text" class="input" />
-        </div>
-        <div class="group">
+          <input id="user" type="text" class="input" formControlName="Email"/>
+          </div>
+          <div class="group">
           <label for="pass" class="label">Password</label>
-          <input id="pass" type="password" class="input" data-type="password" />
-        </div>
-        <div class="group">
+          <input id="pass" type="password" class="input" data-type="password" formControlName="Password" />
+          </div>
+          <div class="group">
           <input type="submit" class="button" value="Sign Up" />
-        </div>
+          </div>
+        </form>
         <div class="hr"></div>
         <div class="foot-lnk">
           <label for="tab-1">Already Member?</label>

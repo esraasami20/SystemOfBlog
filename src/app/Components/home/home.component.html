@@ -1,8 +1,14 @@
 <nav class="navbar navbar-light bg-light justify-content-between mb-3">
     <div class="container">
-        <a class="navbar-brand">Blogs</a>
+        <a class="navbar-brand mx-5">Blogs</a> 
+        <select class="form-control" style="width: 200px;" (change)="getCategoryById($event)">
+            <option>Filter By Category</option>
+            <option *ngFor="let item of Category" value="{{item.categoryId}}">{{item.categoryName}}</option>
+        </select>
+            <span>Welcome <span style="color: blue;font-size: large;"> {{Name}} </span></span>
+
         <form class="form-inline">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="button" routerLink="">log Out</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button" routerLink="" (click)="logOut()">log Out</button>
         
         </form>
   </div>
@@ -10,9 +16,10 @@
 
 <!-- <app-header></app-header> -->
 <div class="container  align-self-center">
-    <div *ngFor="let item of blogs" class=" align-self-center mb-3">
-        <div class="card" style="width: 50%; margin: auto;">
-            <div class="card-header">
+    <div class="row d-block" >
+        <div *ngFor="let item of blogs" class="align-self-center col-12 mb-3" style="margin: auto;width: 50%;">
+            <div class="card">
+                <div class="card-header">
                 <div class="row d-flex">
                     <div class="col-6 float-left">
                         <h3 class="card-title">{{item.blogName}}</h3>
@@ -21,12 +28,12 @@
                         <h6  style="margin-left: 50%;" class="card-title">{{item.createdAt | date:'MMMM dd yyyy'}}</h6>
                     </div>
                 </div>
-            </div>
-            <img class="card-img-top" src="{{item.image}}" style="height: 400px;" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-text">{{item.blogBody}}</p>
-            </div>
-            <div>
+                </div>
+                <img class="card-img-top" src="{{item.image}}" style="height: 400px;" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">{{item.blogBody}}</p>
+                </div>
+                <div>
                 <ngb-accordion #acc="ngbAccordion" class="col-md-4 text-right" style="margin-right: 15px;">
                         <ngb-panel title="{{item.comments.length}}  Comments">
                             <span>{{item.comments.length}}</span>
@@ -42,16 +49,17 @@
                                 </div>
                                 <div class="col-md-12 d-flex" >
                                     <input type="text" width="100%" name="Comment" class="commentinput form-control"
-                                        placeholder="Write a comment....." #addcomment>
-                                    <input type="button" class="btn btn-primary mx-2" value="send" (click)="addComment(item.blogId,addcomment.value)">
+                                        placeholder="Write a comment....." #addcom>
+                                    <input type="button" class="btn btn-primary mx-2" value="send" (click)="addComment(item.blogId,addcom.value)">
                                 </div>
                             </ng-template>
         
                         </ngb-panel>
         
                 </ngb-accordion>
+                </div>
+                <hr/>
             </div>
-            <hr/>
         </div>
     </div>
 </div>

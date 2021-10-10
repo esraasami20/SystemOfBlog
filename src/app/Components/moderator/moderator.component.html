@@ -9,26 +9,40 @@
             </span>
             
           </div>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="button" routerLink="">log Out</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button" routerLink="" (click)="logOut()">log Out</button>
 
         </form>
     </div>
 </nav>
 
 <div id="myDropdown" class="container text-center" *ngIf="!show">
-        <table class="table table-bordered">
+       <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>Blog Title</th>
                     <th>Commnet Body</th>
+                    <th>Reason</th>
                     <th> ... </th>
+                    <!-- <th> Reject </th> -->
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of commentList">
                     <td>{{item.blog.blogName}}</td>
                     <td>{{item.commentBody}}</td>
-                    <td><h3 class="btn btn-default" style="color: green;" (click)="approveComment(item)">+</h3></td>
+                    <td>
+                        <input type="text" class="form-control" #reason/>
+                    </td>
+                    <td>
+                        <h3 class="btn btn-default" style="color: green;" (click)="approveComment(item,reason.value)">
+                            +
+                        </h3>
+                    </td>
+                    <!-- <td>
+                        <h3 class="btn btn-default" style="color: red;" (click)="rijComment(item,reason.value)">
+                            -
+                        </h3>
+                    </td> -->
                 </tr>
             </tbody>
         </table>

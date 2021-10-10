@@ -178,10 +178,20 @@ export class ModeratorComponent implements OnInit {
     this.show = !this.show;
   }
   commentId: any;
-  approveComment(item: any) {
+  approveComment(item: any, reason: string) {
+    console.log(reason);
     this.commentId = item.commentId;
-    this.adminService.approveComment(this.commentId).subscribe((a) => {
-      console.log(a);
+    let params = {
+      IsAppeoved: true,
+      reason: reason,
+    };
+    this.adminService.approveComment(this.commentId, params).subscribe((a) => {
+      // console.log(a);
+      this.getNotification();
+      location.reload();
     });
+  }
+  logOut() {
+    localStorage.clear();
   }
 }
